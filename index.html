@@ -100,24 +100,26 @@
       Todo: <span id="todo-count">1</span> •
       Done: <span id="completed-count">0</span> •
       Total: <span id="total-count">1</span>
+      <!-- link to clean up todos that are done -->
+      <a href="#" onClick="cleanUpDoneTodos(); return false">Clean up</a>
     </div>
   </div>
 
   <script>
-    var flowerElement = document.getElementById("flower");
+//    var flowerElement = document.getElementById("flower");
   // <div id="flower"></div>
 
-  flowerElement.className = "bloom";
+//  flowerElement.className = "bloom";
   // <div id="flower" class="bloom"></div>
 
   // select all the paragraphs on a page
-  document.getElementsByTagName("p");
+//  document.getElementsByTagName("p");
 
   // select something with the id "flower"
-  document.getElementById("flower");
+//  document.getElementById("flower");
 
   // select all tags with the class name "alert"
-  document.getElementsByClassName("alert");
+//  document.getElementsByClassName("alert");
 
     // select the element containing the count
   var totalCount = document.getElementById('total-count');
@@ -208,7 +210,18 @@
     return document.getElementsByClassName("todo").length + 1;
   }
 
+  function cleanUpDoneTodos() {
+    var list = document.getElementById("todolist");
+    var doneItems = document.getElementsByClassName("completed");
 
+    // Reverse loop through the done todo items so we can remove them without
+    // changing the index of the remaining items when we remove them
+    for (var i = doneItems.length; i > 0; i--) {
+      list.removeChild(doneItems[i-1]);
+    }
+
+    updateCounters();
+  }
 
   </script>
 </body>
